@@ -30,6 +30,8 @@ data class UserResponse @Default constructor(
     val connectedAccounts: MutableList<ConnectedAccountResponse> = mutableListOf(),
     val authorities: MutableList<String> = mutableListOf(),
     val links: Set<LinkResponse> = emptySet(),
+    val premiumActive: Boolean = false,
+    val premiumExpiresAt: LocalDateTime? = null,
 )
 
 data class ConnectedAccountResponse(val provider: String?, val connectedAt: LocalDateTime?)

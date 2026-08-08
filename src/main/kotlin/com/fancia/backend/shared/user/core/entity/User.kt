@@ -9,6 +9,7 @@ import com.fancia.backend.shared.user.core.enums.Role
 import jakarta.persistence.*
 import org.springframework.security.core.GrantedAuthority
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.util.UUID
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
@@ -25,6 +26,12 @@ class User() : AbstractEntity(), UserDetails {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 16)
     var status: AccountStatus = AccountStatus.REGISTERED
+
+    @Column(name = "premium_active", nullable = false)
+    var premiumActive: Boolean = false
+
+    @Column(name = "premium_expires_at")
+    var premiumExpiresAt: LocalDateTime? = null
 
     @Enumerated(EnumType.STRING)
     var role: Role? = Role.USER
