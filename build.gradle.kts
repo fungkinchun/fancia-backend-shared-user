@@ -54,6 +54,8 @@ dependencies {
     implementation("com.fancia.backend.shared:common:0.0.1-SNAPSHOT")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
+    testImplementation("io.kotest:kotest-runner-junit5:6.1.7")
+    testImplementation("io.kotest:kotest-assertions-core:6.1.7")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
