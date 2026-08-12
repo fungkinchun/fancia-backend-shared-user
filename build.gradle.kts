@@ -37,6 +37,7 @@ fun RepositoryHandler.codeArtifactRepo(repoName: String) {
 }
 
 repositories {
+    mavenLocal()
     mavenCentral()
     maven { url = uri("https://repo.spring.io/snapshot") }
     codeArtifactRepo("fancia-backend-shared-common")

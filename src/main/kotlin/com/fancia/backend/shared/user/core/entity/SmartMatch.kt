@@ -5,22 +5,38 @@ import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.Table
 import jakarta.persistence.UniqueConstraint
-import java.util.*
+import java.time.LocalDateTime
+import java.util.UUID
 
 @Entity
 @Table(
     name = "smart_matches",
     uniqueConstraints = [
-        UniqueConstraint(columnNames = ["created_by", "user_id"]),
+        UniqueConstraint(name = "uk_smart_matches_user_target", columnNames = ["user_id", "target_id"]),
     ],
 )
 class SmartMatch : AbstractEntity() {
     @Column(name = "user_id", nullable = false)
     var userId: UUID? = null
 
-    @Column(name = "matched_by_user", nullable = false)
-    var matchedByUser: Boolean = false
+    @Column(name = "target_id", nullable = false)
+    var targetId: UUID? = null
 
-    @Column(name = "matched_by_created_by", nullable = false)
-    var matchedByCreatedBy: Boolean = false
+    @Column(name = "user_id_flag")
+    var userIdFlag: Boolean? = null
+
+    @Column(name = "target_id_flag")
+    var targetIdFlag: Boolean? = null
+
+    @Column(name = "user_id_flag_at")
+    var userIdFlagAt: LocalDateTime? = null
+
+    @Column(name = "target_id_flag_at")
+    var targetIdFlagAt: LocalDateTime? = null
+
+    @Column(name = "rank")
+    var rank: Int? = null
+
+    @Column(name = "score")
+    var score: Double? = null
 }
