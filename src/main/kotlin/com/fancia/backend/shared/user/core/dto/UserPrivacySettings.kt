@@ -1,5 +1,8 @@
 package com.fancia.backend.shared.user.core.dto
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 data class UserPrivacySettings(
     val allowFriendRequests: Boolean = true,
     val showGroups: Boolean = true,
