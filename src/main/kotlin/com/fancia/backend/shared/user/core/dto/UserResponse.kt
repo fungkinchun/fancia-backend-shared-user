@@ -32,6 +32,10 @@ data class UserResponse @Default constructor(
     val links: Set<LinkResponse> = emptySet(),
     val premiumActive: Boolean = false,
     val premiumExpiresAt: LocalDateTime? = null,
+    val postsCount: Int? = null,
+    val eventsCount: Int? = null,
+    val groupsCount: Int? = null,
+    val interestsCount: Int? = null,
 )
 
 data class ConnectedAccountResponse(val provider: String?, val connectedAt: LocalDateTime?)

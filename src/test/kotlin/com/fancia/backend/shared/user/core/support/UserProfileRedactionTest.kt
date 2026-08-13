@@ -60,4 +60,31 @@ class UserProfileRedactionTest : FunSpec({
         canViewProfileSection(UserPrivacySettings(showEvents = false), ProfileSection.Events) shouldBe false
         canViewProfileSection(UserPrivacySettings(showInterests = false), ProfileSection.Interests) shouldBe false
     }
+
+    test("private visibility keeps profile basics and interest count only") {
+        val response = UserResponse(
+            id = UUID.randomUUID(),
+            firstName = "Hidden",
+            lastName = "User",
+            email = "hidden@example.com",
+            bio = "Secret bio",
+            profileImageUrl = "https://example.com/pic.jpg",
+            gender = Gender.M,
+            birthDate = LocalDate.of(1990, 1, 1),
+            tags = setOf(UUID.randomUUID(), UUID.randomUUID()),
+            visibility = ProfileVisibility.PRIVATE,
+            privacy = UserPrivacySettings(),
+        )
+
+        val redacted = response.redactForPublicView()
+
+        redacted.firstName shouldBe "Hidden"
+        redacted.lastName shouldBe "User"
+        redacted.bio shouldBe "Secret bio"
+        redacted.profileImageUrl shouldBe "https://example.com/pic.jpg"
+        redacted.interestsCount shouldBe 2
+        redacted.email.shouldBeNull()
+        redacted.gender.shouldBeNull()
+        redacted.tags.shouldBeEmpty()
+    }
 })

@@ -7,4 +7,5 @@ data class UserPrivacySettings(
     val showEvents: Boolean = true,
     val showGender: Boolean = true,
     val showBirthday: Boolean = true,
+    val smartMatchEnabled: Boolean = false,
 )

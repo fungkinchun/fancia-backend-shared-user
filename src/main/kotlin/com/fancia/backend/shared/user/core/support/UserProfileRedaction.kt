@@ -5,18 +5,19 @@ import com.fancia.backend.shared.user.core.dto.UserPrivacySettings
 import com.fancia.backend.shared.user.core.dto.UserResponse
 import com.fancia.backend.shared.user.core.enums.ProfileVisibility
 
-/**
- * Redacts profile fields that must not appear on public user lookups.
- * Call for GET /users/{id}, GET /users/email/{email}, and Smart Match results — not for /users/me.
- */
 fun UserResponse.redactForPublicView(): UserResponse {
     if (visibility == ProfileVisibility.PRIVATE) {
         return UserResponse(
             id = id,
-            firstName = "",
-            lastName = "",
+            firstName = firstName,
+            lastName = lastName,
             profileImageUrl = profileImageUrl,
+            bio = bio,
             visibility = ProfileVisibility.PRIVATE,
+            interestsCount = tags.size,
+            postsCount = postsCount,
+            eventsCount = eventsCount,
+            groupsCount = groupsCount,
         )
     }
 
