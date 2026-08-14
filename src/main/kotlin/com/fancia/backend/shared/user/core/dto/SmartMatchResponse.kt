@@ -5,12 +5,12 @@ import java.util.UUID
 
 data class SmartMatchResponse(
     val id: UUID,
-    val userId: UUID,
-    val targetId: UUID,
-    val userIdFlag: Boolean?,
-    val targetIdFlag: Boolean?,
-    val userIdFlagAt: LocalDateTime?,
-    val targetIdFlagAt: LocalDateTime?,
+    val firstUserId: UUID,
+    val secondUserId: UUID,
+    val firstUserLiked: Boolean?,
+    val secondUserLiked: Boolean?,
+    val firstUserLikedAt: LocalDateTime?,
+    val secondUserLikedAt: LocalDateTime?,
     val rank: Int? = null,
     val score: Double? = null,
     val createdAt: LocalDateTime?,

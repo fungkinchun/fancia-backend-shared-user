@@ -12,31 +12,70 @@ import java.util.UUID
 @Table(
     name = "smart_matches",
     uniqueConstraints = [
-        UniqueConstraint(name = "uk_smart_matches_user_target", columnNames = ["user_id", "target_id"]),
+        UniqueConstraint(name = "uk_smart_matches_first_second", columnNames = ["first_user_id", "second_user_id"]),
     ],
 )
 class SmartMatch : AbstractEntity() {
-    @Column(name = "user_id", nullable = false)
-    var userId: UUID? = null
+    /** Deck owner / row initiator (formerly user_id). */
+    @Column(name = "first_user_id", nullable = false)
+    var firstUserId: UUID? = null
 
-    @Column(name = "target_id", nullable = false)
-    var targetId: UUID? = null
+    /** Other person in the pair (formerly target_id). */
+    @Column(name = "second_user_id", nullable = false)
+    var secondUserId: UUID? = null
 
-    @Column(name = "user_id_flag")
-    var userIdFlag: Boolean? = null
+    @Column(name = "first_user_liked")
+    var firstUserLiked: Boolean? = null
 
-    @Column(name = "target_id_flag")
-    var targetIdFlag: Boolean? = null
+    @Column(name = "second_user_liked")
+    var secondUserLiked: Boolean? = null
 
-    @Column(name = "user_id_flag_at")
-    var userIdFlagAt: LocalDateTime? = null
+    @Column(name = "first_user_liked_at")
+    var firstUserLikedAt: LocalDateTime? = null
 
-    @Column(name = "target_id_flag_at")
-    var targetIdFlagAt: LocalDateTime? = null
+    @Column(name = "second_user_liked_at")
+    var secondUserLikedAt: LocalDateTime? = null
 
     @Column(name = "rank")
     var rank: Int? = null
 
     @Column(name = "score")
     var score: Double? = null
+
+    fun otherUserId(forUserId: UUID): UUID? = when (forUserId) {
+        firstUserId -> secondUserId
+        secondUserId -> firstUserId
+        else -> null
+    }
+
+    fun likedBy(forUserId: UUID): Boolean? = when (forUserId) {
+        firstUserId -> firstUserLiked
+        secondUserId -> secondUserLiked
+        else -> null
+    }
+
+    fun likedAt(forUserId: UUID): LocalDateTime? = when (forUserId) {
+        firstUserId -> firstUserLikedAt
+        secondUserId -> secondUserLikedAt
+        else -> null
+    }
+
+    fun setLikedBy(forUserId: UUID, liked: Boolean?, at: LocalDateTime?) {
+        when (forUserId) {
+            firstUserId -> {
+                firstUserLiked = liked
+                firstUserLikedAt = at
+            }
+            secondUserId -> {
+                secondUserLiked = liked
+                secondUserLikedAt = at
+            }
+        }
+    }
+
+    fun eitherLiked(): Boolean = firstUserLiked == true || secondUserLiked == true
+
+    fun mutualLike(): Boolean = firstUserLiked == true && secondUserLiked == true
+
+    fun hasNotPassed(forUserId: UUID): Boolean = likedBy(forUserId) != false
 }
