@@ -1,10 +1,13 @@
 package com.fancia.backend.shared.user.core.entity
 
 import com.fancia.backend.shared.common.core.entity.AbstractEntity
+import com.fancia.backend.shared.user.core.dto.PairEventIcebreakerResponse
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.Table
 import jakarta.persistence.UniqueConstraint
+import org.hibernate.annotations.JdbcTypeCode
+import org.hibernate.type.SqlTypes
 import java.time.LocalDateTime
 import java.util.UUID
 
@@ -41,6 +44,13 @@ class SmartMatch : AbstractEntity() {
 
     @Column(name = "score")
     var score: Double? = null
+
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(name = "icebreaker_events", columnDefinition = "jsonb")
+    var icebreakerEvents: List<PairEventIcebreakerResponse> = emptyList()
+
+    @Column(name = "icebreaker_computed_at")
+    var icebreakerComputedAt: LocalDateTime? = null
 
     fun otherUserId(forUserId: UUID): UUID? = when (forUserId) {
         firstUserId -> secondUserId

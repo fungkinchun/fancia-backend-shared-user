@@ -24,4 +24,6 @@ data class SmartMatchPersonResponse @Default constructor(
     val score: Double? = null,
     /** Present on `/api/smart-match/matched` when both sides liked. */
     val mutualMatch: Boolean? = null,
+    /** Precomputed “do this together” events for mutual matches (from event-icebreakers-cron). */
+    val icebreakerEvents: List<PairEventIcebreakerResponse> = emptyList(),
 )
