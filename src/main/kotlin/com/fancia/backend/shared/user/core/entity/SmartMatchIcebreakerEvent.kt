@@ -13,12 +13,11 @@ import jakarta.persistence.ManyToOne
 import jakarta.persistence.Table
 import jakarta.persistence.UniqueConstraint
 import org.hibernate.annotations.UuidGenerator
-import java.time.LocalDateTime
 import java.util.UUID
 
 /**
  * One suggested “do this together” event for a [SmartMatch] row (mutual pairs only).
- * Hard-deleted via orphanRemoval when the cron replaces the set (no soft-delete).
+ * Display fields (name, location, start) are loaded by clients via [eventId].
  */
 @Entity
 @Table(
@@ -46,15 +45,6 @@ class SmartMatchIcebreakerEvent {
     @Column(name = "score", nullable = false)
     var score: Double = 0.0
 
-    @Column(name = "next_start")
-    var nextStart: LocalDateTime? = null
-
-    @Column(name = "name")
-    var name: String? = null
-
-    @Column(name = "location_label")
-    var locationLabel: String? = null
-
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(
         name = "smart_match_icebreaker_event_shared_tags",
@@ -67,10 +57,7 @@ class SmartMatchIcebreakerEvent {
         PairEventIcebreakerResponse(
             eventId = requireNotNull(eventId),
             score = score,
-            nextStart = nextStart,
             sharedTagIds = sharedTagIds.toSet(),
-            name = name,
-            locationLabel = locationLabel,
         )
 
     companion object {
@@ -82,9 +69,6 @@ class SmartMatchIcebreakerEvent {
                 smartMatch = parent
                 eventId = dto.eventId
                 score = dto.score
-                nextStart = dto.nextStart
-                name = dto.name
-                locationLabel = dto.locationLabel
                 sharedTagIds = dto.sharedTagIds.toMutableSet()
             }
     }

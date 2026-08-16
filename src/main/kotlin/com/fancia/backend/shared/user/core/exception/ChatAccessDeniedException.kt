@@ -4,6 +4,6 @@ import com.fancia.backend.shared.common.core.exception.DomainException
 
 class ChatAccessDeniedException(
     title: String = "Cannot message this person",
-    message: String = "You can only message people you are connected with through Smart Match",
+    message: String = "You can only message friends, Smart Match connections, or people with a public profile",
     errorCode: String = "CHAT_ACCESS_DENIED",
 ) : DomainException(title, message, errorCode)
