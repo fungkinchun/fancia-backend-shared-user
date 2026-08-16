@@ -36,7 +36,7 @@ class SmartMatchIcebreakerEvent {
     @GeneratedValue
     var id: UUID? = null
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "smart_match_id", nullable = false)
     var smartMatch: SmartMatch? = null
 
