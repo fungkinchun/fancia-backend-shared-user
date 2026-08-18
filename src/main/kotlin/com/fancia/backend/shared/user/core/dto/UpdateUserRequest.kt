@@ -17,7 +17,7 @@ data class UpdateUserRequest(
     val links: List<LinkItem>? = null,
     val bio: String? = null,
     val locationLabel: String? = null,
-    @field:AgeRange(min = 16, max = 120)
+    @field:AgeRange(min = 18, max = 120)
     val birthDate: LocalDate? = null,
     val gender: Gender? = null,
     @field:Valid
