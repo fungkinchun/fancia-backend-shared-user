@@ -20,11 +20,9 @@ import java.util.UUID
     ],
 )
 class SmartMatch : AbstractEntity() {
-    /** Deck owner / row initiator (formerly user_id). */
     @Column(name = "first_user_id", nullable = false)
     var firstUserId: UUID? = null
 
-    /** Other person in the pair (formerly target_id). */
     @Column(name = "second_user_id", nullable = false)
     var secondUserId: UUID? = null
 

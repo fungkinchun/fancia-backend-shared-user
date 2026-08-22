@@ -20,10 +20,7 @@ data class SmartMatchPersonResponse @Default constructor(
     val tags: Set<UUID> = emptySet(),
     val links: Set<LinkResponse> = emptySet(),
     val interestsCount: Int? = null,
-    /** Absolute interest-rank score from the smart-match batch (base + tag/location weights). */
     val score: Double? = null,
-    /** Present on `/api/smart-match/matched` when both sides liked. */
     val mutualMatch: Boolean? = null,
-    /** Precomputed “do this together” events for mutual matches (from event-icebreakers-cron). */
     val icebreakerEvents: List<PairEventIcebreakerResponse> = emptyList(),
 )

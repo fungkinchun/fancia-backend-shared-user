@@ -15,10 +15,6 @@ import jakarta.persistence.UniqueConstraint
 import org.hibernate.annotations.UuidGenerator
 import java.util.UUID
 
-/**
- * One suggested “do this together” event for a [SmartMatch] row (mutual pairs only).
- * Display fields (name, location, start) are loaded by clients via [eventId].
- */
 @Entity
 @Table(
     name = "smart_match_icebreaker_events",

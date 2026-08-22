@@ -7,15 +7,6 @@ import com.fancia.backend.shared.user.core.enums.ProfileVisibility
 import java.time.LocalDate
 import java.util.UUID
 
-/**
- * Public profile payload — display fields only.
- * Privacy is applied server-side (redacted fields / null section counts).
- * Excludes account settings, privacy flags, premium, notifications, authorities, etc.
- *
- * Section visibility for other viewers:
- * - `eventsCount` / `groupsCount` / `interestsCount` are non-null when the section may be shown,
- *   null when hidden (or on private limited profiles).
- */
 data class ProfileResponse @Default constructor(
     val id: UUID? = null,
     val firstName: String? = null,

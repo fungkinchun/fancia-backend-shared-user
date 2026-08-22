@@ -19,11 +19,9 @@ class ChatChannel : AbstractEntity() {
     @Column(nullable = false, length = 32)
     var kind: ChatChannelKind = ChatChannelKind.DM
 
-    /** Opaque Stream Chat channel id. */
     @Column(name = "channel_id", nullable = false, length = 64)
     var channelId: String = ""
 
-    /** Canonical DM pair (sorted); null for non-DM channels. */
     @Column(name = "first_user_id")
     var firstUserId: UUID? = null
 

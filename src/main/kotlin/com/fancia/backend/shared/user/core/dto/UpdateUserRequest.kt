@@ -11,7 +11,6 @@ import java.time.LocalDate
 data class UpdateUserRequest(
     val firstName: String? = null,
     val lastName: String? = null,
-
     val profileImageKey: String? = null,
     @field:Valid
     val links: List<LinkItem>? = null,
