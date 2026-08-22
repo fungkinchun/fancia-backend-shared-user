@@ -12,6 +12,8 @@ import java.util.*
 
 data class UserResponse @Default constructor(
     val id: UUID? = null,
+    val slug: String? = null,
+    val slugChangeAllowedAt: java.time.LocalDateTime? = null,
     val role: Role? = null,
     val firstName: String? = null,
     val lastName: String? = null,

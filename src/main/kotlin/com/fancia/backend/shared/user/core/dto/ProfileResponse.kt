@@ -9,6 +9,8 @@ import java.util.UUID
 
 data class ProfileResponse @Default constructor(
     val id: UUID? = null,
+    val slug: String? = null,
+    val slugChangeAllowedAt: java.time.LocalDateTime? = null,
     val firstName: String? = null,
     val lastName: String? = null,
     val profileImageUrl: String? = null,

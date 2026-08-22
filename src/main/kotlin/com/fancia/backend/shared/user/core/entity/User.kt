@@ -68,6 +68,12 @@ class User() : AbstractEntity(), UserDetails {
     @Column(nullable = false, length = 16)
     var visibility: ProfileVisibility = ProfileVisibility.PUBLIC
 
+    @Column(length = 255)
+    var slug: String? = null
+
+    @Column(name = "slug_changed_at")
+    var slugChangedAt: java.time.LocalDateTime? = null
+
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "user_tags", joinColumns = [JoinColumn(name = "user_id")])
     @Column(name = "tag_id")
