@@ -25,4 +25,5 @@ data class ProfileResponse @Default constructor(
     val postsCount: Int? = null,
     val eventsCount: Int? = null,
     val groupsCount: Int? = null,
+    val premiumActive: Boolean = false,
 )
