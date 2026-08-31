@@ -31,6 +31,9 @@ class ChatChannel : AbstractEntity() {
     @Column(name = "interest_group_id")
     var interestGroupId: UUID? = null
 
+    @Column(name = "event_id")
+    var eventId: UUID? = null
+
     @Column(name = "initiator_user_id")
     var initiatorUserId: UUID? = null
 

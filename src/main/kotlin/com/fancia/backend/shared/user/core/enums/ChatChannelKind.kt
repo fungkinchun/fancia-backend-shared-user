@@ -4,4 +4,5 @@ enum class ChatChannelKind {
     DM,
     GROUP_INQUIRY,
     SUPPORT,
+    EVENT,
 }
