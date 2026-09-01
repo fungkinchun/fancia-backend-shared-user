@@ -4,4 +4,5 @@ enum class PaymentProvider {
     APPLE,
     GOOGLE,
     STRIPE,
+    REFERRAL,
 }
