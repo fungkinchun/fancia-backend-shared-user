@@ -31,7 +31,6 @@ fun UserResponse.redactForPublicView(): UserResponse {
     }
     if (!privacy.showInterests) {
         tags = emptySet()
-        blacklistedIds = emptySet()
     }
 
     return this

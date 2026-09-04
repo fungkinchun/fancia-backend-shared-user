@@ -26,7 +26,6 @@ data class UserResponse @Default constructor(
     var gender: Gender? = null,
     val visibility: ProfileVisibility = ProfileVisibility.PUBLIC,
     var tags: Set<UUID> = emptySet(),
-    var blacklistedIds: Set<UUID> = emptySet(),
     var privacy: UserPrivacySettings = UserPrivacySettings(),
     var notifications: UserNotificationSettings = UserNotificationSettings(),
     val connectedAccounts: MutableList<ConnectedAccountResponse> = mutableListOf(),

@@ -21,7 +21,6 @@ class UserProfileRedactionTest : FunSpec({
             gender = Gender.M,
             birthDate = LocalDate.of(1990, 1, 1),
             tags = setOf(UUID.randomUUID()),
-            blacklistedIds = setOf(UUID.randomUUID()),
             visibility = ProfileVisibility.PUBLIC,
             privacy = UserPrivacySettings(),
         )

@@ -79,11 +79,6 @@ class User() : AbstractEntity(), UserDetails {
     @Column(name = "tag_id")
     var tags: MutableSet<UUID> = mutableSetOf()
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "user_blacklist_ids", joinColumns = [JoinColumn(name = "user_id")])
-    @Column(name = "blacklisted_id")
-    var blacklistedIds: MutableSet<UUID> = mutableSetOf()
-
     @OneToOne(mappedBy = "user", cascade = [CascadeType.ALL], fetch = FetchType.EAGER, orphanRemoval = true)
     var settings: UserSettings? = null
 

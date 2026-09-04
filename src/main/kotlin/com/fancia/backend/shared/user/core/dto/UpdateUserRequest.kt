@@ -21,8 +21,6 @@ data class UpdateUserRequest(
     val gender: Gender? = null,
     @field:Valid
     val tags: Set<TagItemRequest>? = null,
-    @field:Valid
-    val blacklistTags: Set<TagItemRequest>? = null,
     val fcmToken: String? = null,
     val deviceType: DeviceType? = null,
     val deviceId: String? = null,
