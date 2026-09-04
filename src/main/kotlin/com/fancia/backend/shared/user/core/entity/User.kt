@@ -39,14 +39,6 @@ class User() : AbstractEntity(), UserDetails {
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     val connectedAccounts: MutableList<UserConnectedAccount?> = ArrayList()
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-        name = "user_privileges",
-        joinColumns = [JoinColumn(name = "user_id", referencedColumnName = "id")],
-        inverseJoinColumns = [JoinColumn(name = "privilege_id", referencedColumnName = "id")]
-    )
-    val privileges: MutableSet<Privilege> = mutableSetOf()
-
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "user_links", joinColumns = [JoinColumn(name = "user_id")])
     var links: MutableSet<Link> = mutableSetOf()
@@ -99,10 +91,7 @@ class User() : AbstractEntity(), UserDetails {
     }
 
     override fun getAuthorities(): Collection<GrantedAuthority> {
-        val authorities = mutableListOf<GrantedAuthority>()
-        privileges.forEach { it.name?.let { authority -> authorities.add(SimpleGrantedAuthority(authority)) } }
-        authorities.add(SimpleGrantedAuthority("ROLE_$role"))
-        return authorities
+        return listOf(SimpleGrantedAuthority("ROLE_$role"))
     }
 
     override fun getUsername(): String {
